@@ -1,6 +1,7 @@
 package com.ecommerce.exceptions.exceptionHandler;
 
 import com.ecommerce.exceptions.CustomNotFoundException;
+import com.ecommerce.exceptions.ProductPurchaseException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -45,5 +46,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CustomNotFoundException.class)
     public ResponseEntity<String> handleCustomNotFoundException(CustomNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ProductPurchaseException.class)
+    public ResponseEntity<String> handlePurchaseException(CustomNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }

@@ -1,5 +1,7 @@
 package com.ecommerce.product;
 
+import com.ecommerce.product.dto.ProductPurchaseRequest;
+import com.ecommerce.product.dto.ProductPurchaseResponse;
 import com.ecommerce.product.dto.ProductRequest;
 import com.ecommerce.product.dto.ProductResponse;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +10,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Abduhoshim
@@ -35,6 +39,11 @@ public class ProductController {
     public ResponseEntity<PageImpl<ProductResponse>> getAllProducts(@RequestParam(name = "page")  Integer page,
                                                                     @RequestParam(name = "size") Integer size) {
         return ResponseEntity.ok(productService.getAllProduct(page,size));
+    }
+
+    @GetMapping(path = "purchase")
+    public ResponseEntity<List<ProductPurchaseResponse>> getProductByPurchase(@RequestBody List<ProductPurchaseRequest> productPurchaseRequestList) {
+        return ResponseEntity.ok(productService.purchaseProducts(productPurchaseRequestList));
     }
 
 }

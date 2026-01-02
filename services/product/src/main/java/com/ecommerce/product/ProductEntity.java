@@ -20,7 +20,7 @@ public class ProductEntity {
     private Long id;
     private String name;
     private String description;
-    private Double available_quantity;
+    private Double availableQuantity;
     private BigDecimal price;
     @Column(name = "category_id")
     private Integer categoryId;
